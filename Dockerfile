@@ -20,9 +20,6 @@ RUN pip install -r requirements.txt
 # Copy the rest of the application files to the working directory
 COPY . .
 
-ENV MODE=Production
-ENV REDIS_HOST=redis
-ENV REDIS_PORT=6379
 
 # RUN  python manage.py collectstatic
 RUN python manage.py collectstatic --noinput

@@ -4,45 +4,26 @@ from channels.generic.websocket import WebsocketConsumer
 from asgiref.sync import async_to_sync
 
 class NotificationConsumer(WebsocketConsumer):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
     def connect(self):
         """
-        Handles WebSocket connection.
-        Retrieves jsbaccountid and username from query parameters,
-        adds the consumer to a WebSocket group, and accepts the connection.
+        Handles WebSocket connection. Adds the consumer to a WebSocket group and accepts the connection.
         """
+        self.group_name = 'user_web'  # Define the group name
 
-        if self.jsbaccountid:
-            self.group_name = f"user_web"
-            async_to_sync(self.channel_layer.group_add)(
-                self.group_name,
-                self.channel_name
-            )
-            self.accept()
+        # Add the consumer to the WebSocket group
+        async_to_sync(self.channel_layer.group_add)(
+            self.group_name,
+            self.channel_name
+        )
+        self.accept()  # Accept the WebSocket connection
 
-           
-        else:
-            self.close(code=4403)  # Custom code for unauthorized access
-
-
-    def disconnect(self, close_code=4403):
+    def disconnect(self, close_code):
         """
         Handles WebSocket disconnection.
-        Removes the consumer from WebSocket group and updates active users cache.
+        Removes the consumer from the WebSocket group.
         """
-        if self.jsbaccountid and self.group_name:
-            async_to_sync(self.channel_layer.group_discard)(
-                self.group_name,
-                self.channel_name
-            )
-            
-           
-    
-    
-
-    
-    
-    
-
+        # Remove the consumer from the WebSocket group
+        async_to_sync(self.channel_layer.group_discard)(
+            self.group_name,
+            self.channel_name
+        )

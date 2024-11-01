@@ -1,0 +1,40 @@
+
+readme_content = """
+# Project Title
+Product Catalog
+
+## Description
+This project is a Django-based application for managing categories and products, including features for sales, product searches, and inventory management.
+
+## Requirements
+- Python 3.12 
+- Django
+- Django REST framework
+- Pipenv
+
+## Installation Instructions
+
+go to directory and open terminal
+
+pipenv shell
+pipenv install
+
+for server
+python manage.py runserver
+>>>>>>>>>>>
+for unittest
+python manage.py test
+
+Also added docker file 
+and on server to run docker-compose file
+
+A postman file also attached to import you can use.
+A Api documnetation file also attached
+
+
+Added websocket  connection to real time update
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Bishwajitgarai/Product_Catalog
+   cd <repository-directory>
