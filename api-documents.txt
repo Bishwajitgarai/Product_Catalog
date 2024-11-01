@@ -1,0 +1,429 @@
+
+### Endpoints
+
+### Category Endpoints
+
+#### 1. Create a Category
+- **URL:** `/api/category/create/`
+- **Method:** `POST`
+- **Request Body:**
+    ```json
+    {
+        "name": "Electronics"
+    }
+    ```
+- **Success Response:**
+    - **Code:** 201 CREATED
+    - **Content:**
+    ```json
+    {
+    "type": "success",
+    "data": {
+        "id": 1,
+        "name": "Electronics",
+        "created_at": "2024-11-01T06:24:27.464876Z",
+        "updated_at": "2024-11-01T06:24:27.464876Z",
+        "isActive": true
+        }
+    }
+    ```
+- **Error Responses:**
+    - **Code:** 400 BAD REQUEST
+    - **Content:**
+    ```json
+    {
+        "type": "error",
+        "msg": "Category name already exists."
+    }
+    ```
+
+---
+
+#### 2. Retrieve a Category
+- **URL:** `/api/category/{pk}/`
+- **Method:** `GET`
+- **Success Response:**
+    - **Code:** 200 OK
+    - **Content:**
+    ```json
+    {
+            "type": "success",
+            "data": {
+                "id": 1,
+                "name": "Electronics",
+                "created_at": "2024-11-01T06:24:27.464876Z",
+                "updated_at": "2024-11-01T06:24:27.464876Z",
+                "isActive": true
+            }
+        }
+    ```
+- **Error Responses:**
+    -     - **Code:** 500  INTERNAL SERVER ERROR
+    - **Content:**
+    ```json
+    {
+            "type": "error",
+            "msg": "No Category matches the given query."
+        }
+    ```
+
+---
+
+#### 3. Update a Category
+- **URL:** `/api/category/{pk}/`
+- **Method:** `PUT`
+- **Request Body:**
+    ```json
+    {
+        "name": "Updated Electronics"
+    }
+    ```
+- **Success Response:**
+    - **Code:** 200 OK
+    - **Content:**
+    ```json
+    {
+        "type": "success",
+        "data": {
+            "id": 1,
+            "name": "Updated Electronics",
+            "created_at": "2024-11-01T06:24:27.464876Z",
+            "updated_at": "2024-11-01T07:11:04.985753Z",
+            "isActive": true
+        }
+    }
+    ```
+- **Error Responses:**
+    - **Code:** 400 BAD REQUEST
+    - **Content:**
+    ```json
+    {
+        "type": "error",
+        "msg": "Category name already exists."
+    }
+    ```
+    {
+    "type": "error",
+    "msg": "No Category matches the given query."
+}
+
+---
+
+#### 4. Delete a Category
+- **URL:** `/api/category/{pk}/`
+- **Method:** `DELETE`
+- **Success Response:**
+    - **Code:** 204 NO CONTENT
+- **Error Responses:**
+    - **Code:** 403 FORBIDDEN
+    - **Content:**
+    ```json
+    {
+        "type": "error",
+        "msg": "Cannot delete category with active products."
+    }
+    ```
+
+---
+
+### Product Endpoints
+
+#### 1. Create a Product
+- **URL:** `/api/product/create/`
+- **Method:** `POST`
+- **Request Body:**
+    ```json
+    {
+    "name": "Old Phone",
+    "description": "Outdated model",
+    "price": 100.00,
+    "inventory_count": 0,
+    "category": 1,
+    "isActive": false
+}
+    ```
+- **Success Response:**
+    - **Code:** 201 CREATED
+    - **Content:**
+    ```json
+    {
+    "type": "success",
+    "data": {
+        "id": 1,
+        "name": "Old Phone",
+        "description": "Outdated model",
+        "price": "100.00",
+        "inventory_count": 0,
+        "popularity_score": 0.0,
+        "created_at": "2024-11-01T07:19:56.806805Z",
+        "updated_at": "2024-11-01T07:19:56.806805Z",
+        "isActive": false,
+        "category": 1
+    }
+}
+    ```
+- **Error Responses:**
+    - **Code:** 400 BAD REQUEST
+    - **Content:**
+    ```json
+    {
+    "type": "error",
+    "msg": "Product name already exists."
+}
+    ```
+
+---
+
+#### 2. Retrieve a Product
+- **URL:** `/api/product/{pk}/`
+- **Method:** `GET`
+- **Success Response:**
+    - **Code:** 200 OK
+    - **Content:**
+    ```json
+    {
+    "type": "success",
+    "data": {
+        "id": 4,
+        "name": "Old Phone",
+        "description": "Outdated model",
+        "price": "100.00",
+        "inventory_count": 0,
+        "popularity_score": 0.0,
+        "created_at": "2024-11-01T07:22:06.320007Z",
+        "updated_at": "2024-11-01T07:22:06.320007Z",
+        "isActive": true,
+        "category": 1
+    }
+}
+    ```
+- **Error Responses:**
+    - **Code:** 500  INTERNAL SERVER ERROR
+    - **Content:**
+    ```json
+    {
+    "type": "error",
+    "msg": "No Product matches the given query."
+}
+    ```
+
+---
+
+#### 3. Update a Product
+- **URL:** `/api/product/{pk}/`
+- **Method:** `PUT`
+- **Request Body:**
+    ```json
+    {
+        "name": "Updated Laptop"
+    }
+    ```
+- **Success Response:**
+    - **Code:** 200 OK
+    - **Content:**
+    ```json
+    {
+    "type": "success",
+    "data": {
+        "id": 4,
+        "name": "Updated Laptop",
+        "description": "Outdated model",
+        "price": "100.00",
+        "inventory_count": 0,
+        "popularity_score": 0.0,
+        "created_at": "2024-11-01T07:22:06.320007Z",
+        "updated_at": "2024-11-01T07:26:28.255805Z",
+        "isActive": true,
+        "category": 1
+    }
+}
+    ```
+- **Error Responses:**
+    - **Code:** 400 BAD REQUEST
+    - **Content:**
+    ```json
+    {
+        "type": "error",
+        "msg": "Product name already exists."
+    }
+    ```
+    500
+    {
+    "type": "error",
+    "msg": "No Product matches the given query."
+}
+
+---
+
+#### 4. Delete a Product
+- **URL:** `/api/product/{pk}/`
+- **Method:** `DELETE`
+- **Success Response:**
+    - **Code:** 204 NO CONTENT
+    {
+    "type": "success",
+    "msg": "Product deleted successfully."
+}
+- **Error Responses:**
+    - **Code:** 404 NOT FOUND
+    - **Content:**
+    ```json
+    {
+        "type": "error",
+        "msg": "Product not found."
+    }
+    ```
+
+---
+
+### Error Handling
+For all endpoints, if an unexpected error occurs, a response will be returned in the following format:
+- **Code:** 500 INTERNAL SERVER ERROR
+- **Content:**
+```json
+{
+    "type": "error",
+    "msg": "An error occurred: [error_message]"
+}
+
+
+### Product Search API
+
+- **Endpoint:** `/api/product/search/`
+- **Method:** `GET`
+- **Authentication:** Required (IsAuthenticated)
+- **Query Parameters:**
+  - `q`: The search query string to search by product name, description, or category name.
+- **Responses:**
+  - **200 OK:** Returns a list of products matching the search criteria.
+    ```json
+    {
+    "type": "success",
+    "data": [
+        {
+            "id": 1,
+            "name": "A Phone",
+            "description": "Outdated model",
+            "price": "100.00",
+            "inventory_count": 0,
+            "popularity_score": 0.0,
+            "created_at": "2024-11-01T07:19:56.806805Z",
+            "updated_at": "2024-11-01T07:19:56.806805Z",
+            "isActive": false,
+            "category": 1
+        },
+        {
+            "id": 2,
+            "name": "Laptop",
+            "description": "Outdated model",
+            "price": "100.00",
+            "inventory_count": 0,
+            "popularity_score": 0.0,
+            "created_at": "2024-11-01T07:20:55.457046Z",
+            "updated_at": "2024-11-01T07:20:55.457046Z",
+            "isActive": false,
+            "category": 1
+        },
+        {
+            "id": 3,
+            "name": "Old Phone",
+            "description": "Outdated model",
+            "price": "100.00",
+            "inventory_count": 0,
+            "popularity_score": 0.0,
+            "created_at": "2024-11-01T07:21:21.723151Z",
+            "updated_at": "2024-11-01T07:21:21.723151Z",
+            "isActive": false,
+            "category": 1
+        }
+    ]
+}
+    ```
+  - **500 Internal Server Error:** Returns an error message if the request fails.
+    ```json
+    {
+      "type": "error",
+      "msg": "Error message"
+    }
+    ```
+
+
+#### Sales API
+
+---
+
+**1. Create Sale**
+
+- **Endpoint:** /api/sales/create/
+- **Method:** POST
+- **Request Body:**
+    ```json
+    {
+        "product": <product_id>,   // The ID of the product being sold
+        "quantity": <quantity>      // The quantity sold
+    }
+    ```
+- **Response:**
+  - **201 Created:** 
+    ```json
+    {
+    "type": "success",
+    "data": {
+        "id": 2,
+        "quantity": 2,
+        "date": "2024-11-01T08:05:33.267333Z",
+        "created_at": "2024-11-01T08:05:33.267333Z",
+        "updated_at": "2024-11-01T08:05:33.267333Z",
+        "isActive": true,
+        "product": 6
+    }
+}
+    ```
+  - **400 Bad Request:** 
+    ```json
+    {
+    "type": "error",
+    "msg": "No Product matches the given query."
+}
+{
+    "type": "error",
+    "msg": "Stock unavailable."
+}
+    ```
+
+---
+
+**2. List Sales**
+
+- **Endpoint:** /api/sales/
+- **Method:** GET
+- **Response:**
+  - **200 OK:** 
+    ```json
+    {
+    "type": "success",
+    "data": [
+        {
+            "id": 1,
+            "quantity": 2,
+            "date": "2024-11-01T08:01:02.203831Z",
+            "created_at": "2024-11-01T08:01:02.203831Z",
+            "updated_at": "2024-11-01T08:01:02.203831Z",
+            "isActive": true,
+            "product": 1
+        },
+        {
+            "id": 2,
+            "quantity": 2,
+            "date": "2024-11-01T08:05:33.267333Z",
+            "created_at": "2024-11-01T08:05:33.267333Z",
+            "updated_at": "2024-11-01T08:05:33.267333Z",
+            "isActive": true,
+            "product": 6
+        }
+    ]
+}
+    ```
+
+---
+
