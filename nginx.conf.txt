@@ -1,0 +1,32 @@
+server {
+    listen 80;  # Listen on port 80 for HTTP requests
+    server_name mydomain.com www.mydomain.com;  # Replace with your domain
+
+    # Serve static files
+    root /var/www/html;
+    index index.html index.htm;
+
+    # Location for static content
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    # Proxy requests to the backend application
+    location /api/ {
+        proxy_pass http://127.0.0.1:5000;  # Your backend application
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    # Error page configuration
+    error_page 404 /404.html;
+    location = /404.html {
+        root /var/www/html;
+    }
+
+    # Log files
+    access_log /var/log/nginx/access.log;
+    error_log /var/log/nginx/error.log;
+}
